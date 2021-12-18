@@ -1,0 +1,43 @@
+#include<iostream>
+#include<array>
+#include<string>
+#include<ctime>
+
+using namespace std;
+
+class Cards
+{
+public:
+    static const size_t card1{ 13 };
+    static const size_t card2{ 4 };
+
+    Cards(const array<string, card1>& card1n,
+        const array<string, card2>& card2n)
+        : arr1{ card1n }, arr2{ card2n } {}
+    void disPlay() {
+        for (int x = 0; x < arr2.size(); x++) {
+            int i = rand() % 13;
+            int j = rand() % 4;
+            cout << arr1[i] + arr2[j] << " ";
+        }
+    }
+private:
+    array<string, card1> arr1;
+    array<string, card2> arr2;
+};
+int main() {
+    array<string, Cards::card1> arr1{ "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king" };
+    array<string, Cards::card2> arr2{ " of Hearts,"," of Diamond,"," of Spades,"," of Clubs," };
+    Cards a1(arr1, arr2);
+    Cards a2(arr1, arr2);
+    srand(static_cast<unsigned int>(time(0)));
+    
+    cout<<"2 players will receive 4 random cards in their deck."<<endl;
+
+    cout << "player1's deck : ";
+    a1.disPlay();
+
+    cout << "\nplayer2's deck : ";
+    a2.disPlay();
+}
+
